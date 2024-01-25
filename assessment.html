@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Main DashBoard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <!-- The fonts import -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital@1&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- importing the icons  -->
+    <script
+      src="https://kit.fontawesome.com/d1576970a7.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="css/dashboards.css" />
+
+    <script src="script.js" defer></script>
+
+    <!-- For the skills selector on the modal -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+  </head>
+  <!-- The main content is here-->
+
+  <body>
+    <div class="sidebar show_desktop">
+      <div class="logo"></div>
+      <ul class="main">
+        <li>
+          <a href="landing.html">
+            <i class="fa-solid fa-house"></i> <span>Home</span>
+          </a>
+        </li>
+        <li>
+          <a href="mainadmin.html">
+            <i class="fa-solid fa-square-poll-vertical"></i>
+            <span>Classes</span>
+          </a>
+        </li>
+        <li>
+          <a href="asses.html">
+            <i class="fa-solid fa-percent"></i>
+            <span>Asses</span>
+          </a>
+        </li>
+        <li class="choosen">
+          <a href="assessment.html">
+            <i class="fa-solid fa-percent"></i>
+            <span>Assessment</span>
+          </a>
+        </li>
+        <li>
+          <a href="skills.html">
+            <i class="fa-solid fa-paperclip"></i>
+            <span>Skills</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="http://localhost:3001/logout">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span>Logout</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="main-content">
+      <header class="show_medium">
+        <div class="row">
+          <div class="col-12 col-md-9 text-center pt-2">
+            <a class="logo" href="landing.html">Enhanced Academic Experience</a>
+          </div>
+          <div class="col-12 col-md-auto text-end">
+            <div class="dropdown me-2 mt-2">
+              <button
+                class="btn btn-primary dropdown-toggle"
+                type="button"
+                id="dropdownMenuButton1"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Menu
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li>
+                  <a href="landing.html">
+                    <i class="fa-solid fa-house px-2"></i> <span>Home</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="mainadmin.html">
+                    <i class="fa-solid fa-square-poll-vertical px-2"></i>
+                    <span>Classes</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="asses.html">
+                    <i class="fa-solid fa-percent px-2"></i>
+                    <span>Asses</span>
+                  </a>
+                </li>
+                <li class="choosen">
+                  <a href="assessment.html">
+                    <i class="fa-solid fa-percent px-2"></i>
+                    <span>Assessment</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="skills.html">
+                    <i class="fa-solid fa-paperclip px-2"></i>
+                    <span>Skills</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </header>
+      <div class="header-container">
+        <div class="header-title">
+          <span>Admin</span>
+          <h2>Dashboard</h2>
+        </div>
+        <div class="header-right">
+          <div class="welcome-message">
+            <p>Welcome, <span id="name"></span></p>
+                    </div>
+          <div class="user-info">
+            <img
+              src="media/Profilepicture.jpg"
+              alt="The profile picture of the user"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="card-container">
+        <div class="card-container-add-skill">
+          <h2 class="table-header">Add Assessment</h2>
+          <button id="add-assessment-button">Add Assessment</button>
+
+          <div id="assessment-modal">
+            <div class="modal-content">
+              <span id="assessment-modal-close">&times;</span>
+              <h3 class="modal-header">Add a new Assessment</h3>
+              <form id="modal-Form">
+                <label for="assessment-name">Assessment name</label>
+                <input
+                  type="text"
+                  id="assessment-name"
+                  name="assessment-name"
+                  required
+                />
+
+                <label for="assessment-type">Assessment Type</label>
+                <input
+                  type="text"
+                  id="assessment-type"
+                  name="assessment-type"
+                  required
+                />
+
+                <label for="assessment-skills">Skills</label>
+                <select
+                  id="assessment-skills"
+                  name="assessment-skills[]"
+                  multiple
+                  required
+                >
+                  <option value="skill1">Programming</option>
+                  <option value="skill2">Design</option>
+                  <option value="skill3">Testing</option>
+                  <!-- Add more option elements here for each skill -->
+                </select>
+
+                <button type="submit" id="assessment-modal-button">
+                  Submit
+                </button>
+              </form>
+            </div>
+          </div>
+
+          <table class="assessment-table">
+            <thead>
+              <tr>
+                <th>Assessment Name</th>
+                <th>Type</th>
+                <th>Skills</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- The assessment data will be dynmically added here -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>

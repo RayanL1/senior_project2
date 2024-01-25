@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Main DashBoard</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <!-- The fonts import -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital@1&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- importing the icons  -->
+    <script
+      src="https://kit.fontawesome.com/d1576970a7.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="css/dashboards.css" />
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  </head>
+  <!-- The main content is here-->
+  <body>
+    <div class="sidebar show_desktop">
+      <div class="logo"></div>
+      <ul class="main">
+        <li>
+          <a href="landing.html">
+            <i class="fa-solid fa-house"></i> <span>Home</span>
+          </a>
+        </li>
+        <li>
+          <a href="mainadmin.html">
+            <i class="fa-solid fa-square-poll-vertical"></i>
+            <span>Classes</span>
+          </a>
+        </li>
+        <li>
+          <a href="asses.html">
+            <i class="fa-solid fa-percent"></i>
+            <span>Asses</span>
+          </a>
+        </li>
+        <li class="choosen">
+          <a href="assessment.html">
+            <i class="fa-solid fa-percent"></i>
+            <span>Assessment</span>
+          </a>
+        </li>
+        <li>
+          <a href="skills.html">
+            <i class="fa-solid fa-paperclip"></i>
+            <span>Skills</span>
+          </a>
+        </li>
+
+        <li>
+          <a href="http://localhost:3001/logout">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span>Logout</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="main-content">
+      <header class="show_medium">
+        <div class="row">
+          <div class="col-12 col-md-9 text-center pt-2">
+            <a class="logo" href="landing.html">Enhanced Academic Experience</a>
+          </div>
+          <div class="col-12 col-md-auto text-end">
+            <div class="dropdown me-2 mt-2">
+              <button
+                class="btn btn-primary dropdown-toggle"
+                type="button"
+                id="dropdownMenuButton1"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Menu
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li>
+                  <a href="landing.html">
+                    <i class="fa-solid fa-house px-2"></i> <span>Home</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="mainadmin.html">
+                    <i class="fa-solid fa-square-poll-vertical px-2"></i>
+                    <span>Classes</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="asses.html">
+                    <i class="fa-solid fa-percent px-2"></i>
+                    <span>Asses</span>
+                  </a>
+                </li>
+                <li class="choosen">
+                  <a href="assessment.html">
+                    <i class="fa-solid fa-percent px-2"></i>
+                    <span>Assessment</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="skills.html">
+                    <i class="fa-solid fa-paperclip px-2"></i>
+                    <span>Skills</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </header>
+      <div class="header-container">
+        <div class="header-title">
+          <span>Admin</span>
+          <h2>Dashboard</h2>
+        </div>
+        <div class="header-right">
+          <div class="welcome-message">
+            <p>Welcome, <span id="name"></span></p>
+                    </div>
+          <div class="user-info">
+            <img
+              src="media/Profilepicture.jpg"
+              alt="The profile picture of the user"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="card-container center_medium">
+        <div class="row pb-1">
+          <div class="col-12">
+            <div class="card-container-asses">
+              <div class="row">
+                <div class="col-12">
+                  <h2 class="your-group-title">Software Engineering 20</h2>
+                </div>
+                <div class="col-12">
+                  <div class="selector-container">
+                    <label for="students" class="selector-label"
+                      >Choose a student:</label
+                    >
+                    <select
+                      id="students"
+                      name="students"
+                      class="student-selector"
+                    >
+                    <option value="none">Choice student</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <div class="table-container group-container">
+                    <table class="assessment-table">
+                      <thead>
+                        <tr>
+                          <th>Skill name</th>
+                          <th>Major</th>
+                          <th><i class="fa-solid fa-star"></i>skills</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr class="group-leader">
+                          <td>Analysis</td>
+                          <td>Computer Science</td>
+                          <td>
+                            <input
+                              class="asess-input"
+                              type="text"
+                              placeholder="100%"
+                              id="analysis"
+                            />
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Coding</td>
+                          <td>Computer Science</td>
+                          <td>
+                            <input
+                              class="asess-input"
+                              type="text"
+                              placeholder="100%"
+                              id="coding"
+                            />
+                          </td>
+                        </tr>
+                        <tr>
+                          <td>Design</td>
+                          <td>Software Engineering</td>
+                          <td>
+                            <input
+                              class="asess-input"
+                              type="text"
+                              placeholder="100%"
+                              id="design"
+                            />
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="button-container">
+                  <button id="send-data" class="asses-button">Send Results</button>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="table-container">
+                  <div class="row">
+                    <div class="col-12">
+                      <h2 class="result-header-table">Results</h2>
+                    </div>
+                    <div class="col-12">
+                      <table class="results-table">
+                        <thead>
+                          <tr>
+                            <th>Student Name</th>
+                            <th>Student ID</th>
+                            <th>Analysis</th>
+                            <th>Coding</th>
+                            <th>Design</th>
+                          </tr>
+                        </thead>
+                        <tbody id="results">
+                          <tr>
+                            <td>Mohammed</td>
+                            <td>192134</td>
+                            <td>5</td>
+                            <td>4</td>
+                            <td>4</td>
+                          </tr>
+                          <!-- More rows as needed -->
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <script src="/scripts/asses.js"></script>
+  </body>
+</html>

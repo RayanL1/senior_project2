@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="css/dashboards.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+
+    <!-- The fonts import -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital@1&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- importing the icons  -->
+    <script
+      src="https://kit.fontawesome.com/d1576970a7.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- Importing Remix icons -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+  </head>
+
+  <!-- The main content is here-->
+
+  <body>
+    <div class="sidebar show_desktop">
+      <div class="logo"></div>
+      <ul class="main">
+        <li>
+          <a href="landing.html">
+            <i class="fa-solid fa-house"></i> <span>Home</span>
+          </a>
+        </li>
+        <li>
+          <a href="dashboard.html">
+            <i class="fa-solid fa-square-poll-vertical"></i>
+            <span>Statistics</span>
+          </a>
+        </li>
+        <li class="choosen">
+          <a href="portfolio.html">
+            <i class="fa-solid fa-briefcase"></i>
+            <span>Portfolio</span>
+          </a>
+        </li>
+        <li>
+          <a href="portfoliobuilder.html">
+            <i class="fa-brands fa-stack-exchange"></i>
+            <span>Portfolio builder</span>
+          </a>
+        </li>
+        <li>
+          <a href="group.html">
+            <i class="fa-solid fa-user-group"></i>
+            <span>Group</span>
+          </a>
+        </li>
+        <li>
+          <a href="course.html">
+            <i class="fa-solid fa-bars"></i>
+            <span>Course Group</span>
+          </a>
+        </li>
+        
+        <li class="logout">
+          <a href="http://localhost:3001/logout">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            <span>Logout</span>
+          </a>
+        </li>
+      </ul>
+    </div>
+    <div class="main-content">
+      <header class="show_medium">
+        <div class="row">
+          <div class="col-12 col-md-9 text-center pt-2">
+            <a class="logo" href="landing.html">Enhanced Academic Experience</a>
+          </div>
+          <div class="col-12 col-md-auto text-end">
+            <div class="dropdown me-2 mt-2">
+              <button
+                class="btn btn-primary dropdown-toggle"
+                type="button"
+                id="dropdownMenuButton1"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Menu
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                <li>
+                  <a href="landing.html" class="">
+                    <i class="fa-solid fa-house px-2"></i> <span>Home</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="statistics.html">
+                    <i class="fa-solid fa-square-poll-vertical px-2"></i>
+                    <span>Statistics</span>
+                  </a>
+                </li>
+                <li class="choosen">
+                  <a href="portfolio.html">
+                    <i class="fa-solid fa-briefcase px-2"></i>
+                    <span>Portfolio</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="portfoliobuilder.html">
+                    <i class="fa-brands fa-stack-exchange px-2"></i>
+                    <span>Portfolio Builder</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="group.html">
+                    <i class="fa-solid fa-user-group px-2"></i>
+                    <span>Group</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="course.html">
+                    <i class="fa-solid fa-bars px-2"></i>
+                    <span>Course Group</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="http://localhost:3001/logout">
+                    <i class="fa-solid fa-right-from-bracket px-2"></i>
+                    <span>Logout</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </header>
+      <div class="header-container">
+        <div class="header-title">
+          <span>Enhanced</span>
+          <h2>Dashboard</h2>
+        </div>
+        <div class="header-right">
+          <div class="welcome-message">
+            <p>Welcome, <span id="username"></span></p>
+          </div>
+          <div class="user-info">
+            <img id="avatar"
+              src="media/Profilepicture.jpg"
+              alt="The profile picture of the user"
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="card-container center_medium">
+        <div class="container p-5">
+          <div class="row pb-1 g-3">
+            <div class="col-12 col-xl-6 col-lg-6 pt-2">
+              <div class="content-text">
+                <p><span class="text-primary">Hi There, I'm</span></p>
+                <h1 id="name"></h1>
+                <!-- <p id="job-title" class="job-title">Software Engineer</p> -->
+                <p id="major" class="major">Major: </p>
+                <p class="email">
+                  Email:
+                  <a href="mailto:" id="email"></a>
+                </p>
+                <div class="social-media"></div>
+
+                <a href="#about" class="button-primary"
+                  >About Me <i class="fa-solid fa-circle-arrow-down"></i
+                ></a>
+              </div>
+            </div>
+            <div class="col-12 col-xl-6 col-lg-6 pt-2">
+              <div class="portfolio-header">
+                <img id="icon"
+                  src="media/Mike Shinoda 2.jpg"
+                  alt="Personal Picture "
+                  height="20px"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container-fluid">
+          <!-- Skills start -->
+          <div class="row pb-1 g-3">
+            <div class="col-12 pt-2">
+              <div class="skills">
+                <div class="portfolio-container">
+                  <h2><i class="fa-solid fa-laptop-code"></i> Skills</h2>
+                  <hr />
+                  <div class="skills-content">
+                    <div class="row">
+                      <div class="col-12 col-xl-3 col-lg-4 col-md-6">
+                        <div class="item itemm" id="html">
+                          <img src="media/HTML.png" alt="HTML">
+                          <p>HTML</p>
+                        </div>
+                      </div>
+                      <div class="col-12 col-xl-3 col-lg-4 col-md-6">
+                        <div class="item itemm" id="css">
+                          <img src="media/CSS.webp" alt="CSS">
+                          <p>CSS</p>
+                        </div>
+                      </div>
+                      <div class="col-12 col-xl-3 col-lg-4 col-md-6">
+                        <div class="item itemm" id="js">
+                          <img src="media/JavaScript.png" alt="JavaScript">
+                          <p>JavaScript</p>
+                        </div>
+                      </div>
+                      <div class="col-12 col-xl-3 col-lg-4 col-md-6">
+                        <div class="item itemm" id="node.js">
+                          <img src="media/Nodejs.png" alt="Node Js">
+                          <p>Node Js</p>
+                        </div>
+                      </div>
+                      <div class="col-12 col-xl-3 col-lg-4 col-md-6">
+                        <div class="item itemm" id="java">
+                          <img src="media/Java.png" alt="Java Language">
+                          <p>Java</p>
+                        </div>
+                      </div>
+                      <div class="col-12 col-xl-3 col-lg-4 col-md-6">
+                        <div class="item itemm" id="react">
+                          <img src="media/React Js.png" alt="React Js">
+                          <p>React Js</p>
+                        </div>
+                      </div>
+                      <div class="col-12 col-xl-3 col-lg-4 col-md-6">
+                        <div class="item itemm" id="sql">
+                          <img src="media/MySql.svg" alt="My Sql">
+                          <p>My Sql</p>
+                        </div>
+                      </div>
+                      <div class="col-12 col-xl-3 col-lg-4 col-md-6">
+                        <div class="item itemm" id="ruby">
+                          <img src="media/Ruby.png" alt="Ruby Language">
+                          <p>Ruby</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Skills end -->
+
+          <!-- Assessment results start here -->
+          <div class="row pb-1 g-3">
+            <div class="col-12 pt-2">
+              <div class="assessment-results">
+                <h2>Assessment Results</h2>
+                <div class="results-content">
+                  <div class="item">
+                    <h3>Coding</h3>
+                    <div class="bar">
+                      <div class="percentage" id="coding" style="width: 0%">0%</div>
+                    </div>
+                  </div>
+                  <div class="item">
+                    <h3>Design</h3>
+                    <div class="bar">
+                      <div class="percentage" id="design" style="width: 0%">0%</div>
+                    </div>
+                  </div>
+                  <div class="item">
+                    <h3>Analysis</h3>
+                    <div class="bar">
+                      <div class="percentage" id="analysis" style="width: 0%">0%</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Assessment results end here -->
+
+          <!-- Portfolio start -->
+
+          <div class="row pb-1 g-3">
+            <div class="col-12">
+              <section class="portfolio">
+                <div class="container">
+                  <h2><i class="fa-solid fa-laptop-code"></i>My Projects</h2>
+                </div>
+                <div id="projects" class="row g-3">
+                </div>
+              </section>
+            </div>
+          </div>
+          <!-- Portfolio end -->
+          <!-- Certification start -->
+          <div class="row pb-1 g-3">
+            <div class="col-12">
+              <section class="portfolio-certification">
+                <div class="container">
+                  <h2>
+                    <i class="fa-solid fa-book"></i> My Certifications
+                  </h2>
+                </div>
+                <div id="certificates" class="row g-3">
+
+                  
+                </div>
+              </section>
+            </div>
+          </div>
+          <!-- Certification end -->
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <script src="/scripts/portfolio.js"></script>
+    <style>
+      .itemm{
+        filter: blur(4px);
+      }
+    </style>
+  </body>
+</html>
