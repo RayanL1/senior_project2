@@ -196,19 +196,89 @@ app.post("/personal",(req,res)=>{
     }
   });
 })
-app.post("/create_group",(req,res)=>{
-  console.log(req.body)
-  users.get().then(async user=>{
-    user = await user.val()
-    for(let key in user){
-      console.log(key)
-      if(user[key].token == req.body.token){
-        admin.database().ref("groups").push({name:req.body.name,maxusers:req.body.maxusers,createdAt:new Date(),members:[{name:user[key].username,id:key,major:user[key].major,skills:[0,0,0]}]})
-        res.send("OK")
+
+
+app.post("/create_group", async (req, res) => {
+  try {
+    // Check if user is already in a group
+    const groupsSnapshot = await admin.database().ref("groups").get();
+    const groups = groupsSnapshot.val();
+
+    for (let key in groups) {
+      let finder = Object.values(groups[key].members).find(
+        (usr) => usr.name == req.body.userInfo.username
+      );
+      if (finder) {
+        console.log("You are already in a group");
+        return res.status(401).json({ error: "You are already in a group" });
       }
     }
-  })
-})
+
+    // Check if user exists
+    const usersSnapshot = await users.get();
+    const data2 = usersSnapshot.val();
+
+    if (!data2) {
+      console.log("No Users Included");
+      return res.status(500).json({ error: "No Users Included" });
+    }
+
+    const userInfo = req.body.userInfo;
+
+    if (!userInfo) {
+      console.log("User not found or user data incomplete");
+      return res.status(401).json({ error: "User not found or user data incomplete" });
+    }
+
+    //find the user key in the database
+    let userKey = Object.keys(data2).find(
+      (key) => data2[key].username == userInfo.username
+    );
+
+
+for(let key in data2){
+    // Create a new group
+    const newGroup = {
+      name: req.body.name,
+      maxusers: req.body.maxusers,
+      createdAt: new Date(),
+      members: [
+        {
+          name: userInfo.username,
+          id: userKey,
+          major: userInfo.major,
+          skills: [0, 0, 0],
+        },
+      ],
+    };
+
+    // Attempt to create the new group
+    const newGroupRef = await admin.database().ref("groups").push(newGroup);
+
+    // Add the group key to the user
+    await admin
+      .database()
+      .ref(`users/${userKey}/groups`)
+      .push({ name: req.body.name, key: newGroupRef.key });
+
+    console.log("Group created successfully with key:", newGroupRef.key);
+
+    return res.send("OK");
+  } 
+
+}
+catch (error) {
+  console.error("Error:", error);
+  return res.status(500).json({ error: "Internal Server Error", details: error.message });
+}
+
+
+});
+
+
+
+
+
 app.post("/get_group",(req,res)=>{
   let users_list = []
   let groups_list = []
@@ -253,9 +323,27 @@ app.post("/dashboard",(req,res)=>{
     }
   });
 })
-app.post("/invite",(req,res)=>{
-  admin.database().ref(`users/${req.body.userId}/invites`).push({group:req.body.group,inviter:req.body.inviter})
-})
+app.post("/invite", (req, res) => {
+  // Check if the group invite is already sent
+  admin.database().ref(`users/${req.body.userId}/invites`).get().then(data => {
+    data = data.val();
+    if (data) {
+      for (let key in data) {
+        if (data[key].group == req.body.group) {
+          res.send("Already Sent");
+          return;
+        }
+      }
+    }
+
+    // If the invite is not already sent, proceed to send the invite
+    admin.database().ref(`users/${req.body.userId}/invites`).push({ group: req.body.group, inviter: req.body.inviter });
+    res.send("invite has been sent successfully"); 
+    console.log(req.body);
+    console.log("OK");
+  });
+});
+
 app.post("/asses",(req,res)=>{
   let ulist = []
   users.get().then(async data=>{
@@ -279,6 +367,18 @@ app.post("/save_languages",(req,res)=>{
 res.send("Done")
 })
 
+
+app.post("/get-user-data",(req,res)=>{
+  users.get().then(async data=>{
+    data = await data.val()
+    for(let key in data){
+      if(data[key].token == req.body.token){
+        res.json(data[key])
+        console.log('info is: ' + data[key])
+      }
+    }
+  })
+})
 // The logout code end
 
 
